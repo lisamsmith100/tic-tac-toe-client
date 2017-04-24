@@ -56,6 +56,7 @@ const signOutFailure = (error) => {
 }
 
 const changePasswordSuccess = (data) => {
+    $('#change-password-modal').modal('toggle')
   // store.user = data.user
   // console.log('change-password success ran.  and nothing was returned')
   // store.user = data.user
