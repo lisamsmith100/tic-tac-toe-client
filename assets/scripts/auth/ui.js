@@ -67,7 +67,7 @@ const signOutFailure = (error) => {
 const changePasswordSuccess = (data) => {
   // store.user = data.user
   console.log('change-password success ran.  and nothing was returned')
-  store.user = data.user
+  // store.user = data.user
   console.log('store is: ', store)
   $('.navbar-brand').html('You changed your password.  To play, please sign in with your new password.')
   // $('#change-password').toggle()
