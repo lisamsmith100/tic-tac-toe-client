@@ -52,6 +52,7 @@ const signOutFailure = (error) => {
 }
 
 const changePasswordSuccess = (data) => {
+    $('#change-password-modal').modal('toggle')
   // store.user = data.user
   // store.user.token = data.user.token
   $('.navbar-brand').html('You changed your password.')
