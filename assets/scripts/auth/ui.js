@@ -64,11 +64,11 @@ const changePasswordSuccess = (data) => {
   // store.user = data.user
   console.log('change-password success ran.  and nothing was returned')
   console.log('store is: ', store)
-  store.user = data.user
+  // store.user.token = data.user.token
   console.log('store is: ', store)
-  $('.navbar-brand').html('You changed your password.  To play, please sign in with your new password.')
-  // $('#change-password').toggle()
-  // $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
+  $('.navbar-brand').html('You changed your password.')
+  // $('#change-password-modal').toggle()
+  // $('#change-password-modal').find('input:text, input:password, select, textarea').val('')
   // store.user = data.user
 }
 
