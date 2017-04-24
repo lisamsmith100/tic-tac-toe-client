@@ -5,6 +5,7 @@ const gameEvents = require('./events')
 
 const signUpSuccess = (data) => {
   console.log(data)
+  store.user = data.user
   console.log('sign up success ran.  data is : ', data)
   $('#sign-up-modal').modal('toggle')
   $('#sign-in-modal').modal('toggle')
@@ -12,7 +13,6 @@ const signUpSuccess = (data) => {
   // $('.sign-out-button').hide()
   $('.navbar-brand').html('<p>You have successfully signed up! To play, sign in.</p>')
   // $('.change-password-button').hide()
-  store.user = data.user
 }
 
 const signUpFailure = (error) => {
@@ -60,12 +60,13 @@ const signOutFailure = (error) => {
   //  $('#sign-out-modal').modal('hide')
 }
 
-const changePasswordSuccess = () => {
+const changePasswordSuccess = (data) => {
+  // store.user = data.user
   console.log('change-password success ran.  and nothing was returned')
   console.log('store is: ', store)
-  // data.user = null
+  store.user = data.user
   console.log('store is: ', store)
-  $('.navbar-brand').html('<p>You changed your password.  To play, please sign in with your new password.</p>')
+  $('.navbar-brand').html('You changed your password.  To play, please sign in with your new password.')
   // $('#change-password').toggle()
   // $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
   // store.user = data.user
@@ -73,6 +74,7 @@ const changePasswordSuccess = () => {
 
 const changePasswordFailure = (error) => {
   console.error('change-password failure ran.  error is: ', error)
+    // store.user = data.user
   $('.navbar-brand').html('<p>Password change was not successful.  Try again.</p>')
   // $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
 }
