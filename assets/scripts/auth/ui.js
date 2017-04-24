@@ -22,11 +22,7 @@ const signUpFailure = (error) => {
   $('.change-password-button').hide()
   // $('#change-password-button-modal').hide()
   $('.navbar-brand').html('<p>Your signup was not successful! If email already used, try a new one.</p>')
-<<<<<<< HEAD
-  $('#sign-up-modal').find('input:text, input:password, select, textarea').val('')
-=======
   $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
->>>>>>> resub2
 }
 
 const signInSuccess = (data) => {
@@ -71,14 +67,12 @@ const signOutFailure = (error) => {
 const changePasswordSuccess = (data) => {
   // store.user = data.user
   console.log('change-password success ran.  and nothing was returned')
-  console.log('store is: ', store)
   store.user = data.user
   console.log('store is: ', store)
   $('.navbar-brand').html('You changed your password.  To play, please sign in with your new password.')
   // $('#change-password').toggle()
   // $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
   // store.user = data.user
->>>>>>> resub2
 }
 
 const changePasswordFailure = (error) => {
