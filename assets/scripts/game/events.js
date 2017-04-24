@@ -37,7 +37,6 @@ const onCreateGame = function (event) {
 
 const onTotalGamesByUser = function (event) {
   //  event.preventDefault()
-  console.log('i clicked to get all games')
   const data = '{}'
   api.totalGamesByUser(this.data)
     .then(ui.totalGamesSuccess)
@@ -47,16 +46,12 @@ const onTotalGamesByUser = function (event) {
 const onClickBoard = function (event) {
   const value = currentPlayer
   if (currentPlayer === 'x') {
-    console.log('player is ', currentPlayer)
     const index = $(this).attr('class')
-    console.log('index is ', index)
-    console.log('the value is ', value)
     $(this).text('x')
     gameBoard[index] = 'x'
     $(this).off('click', onClickBoard)
     // gameBoard[index] = value
     over = isOver(gameBoard, value)
-    console.log('over equals ' + over)
     const data = {
       'game': {
         'cell': {
@@ -67,19 +62,13 @@ const onClickBoard = function (event) {
       }
     }
     numberMoves = numberMoves + 1
-    console.log(store)
     api.updateGame(data)
       .then(ui.updateGameSuccess)
-    console.log('just played a(n) ', currentPlayer, ' in index ', index)
     if (over) {
-      console.log('Game Over')
     }
     currentPlayer = 'o'
   } else {
     const index = $(this).attr('class')
-    console.log('index is ', index)
-    console.log('the value is ', value)
-    console.log('player is ', currentPlayer)
     $(this).text('o')
     $(this).off('click', onClickBoard)
     gameBoard[index] = value
@@ -96,9 +85,7 @@ const onClickBoard = function (event) {
     numberMoves += 1
     api.updateGame(data)
       .then(ui.updateGameSuccess)
-    console.log('just played a(n) ', currentPlayer, ' in index ', index)
     if (over) {
-      console.log('Game Over')
     }
     // hide board
     currentPlayer = 'x'
@@ -111,7 +98,7 @@ const isOver = function (board, currentPlayer) {
   let player = currentPlayer
   over = false
   if ((gameBoard[0] === gameBoard[1]) && (gameBoard[1] === gameBoard[2]) && (gameBoard[2] === player)) {
-    console.log('player ', player, ' won') // 1st row win
+    // 1st row win
     $('h1').html('<p>Game over.  Player ' + player + ' won.<br/>Click Games > Clear Board then Choose Create Game to Play Again</p>')
     // onClearGame()
     $('.0').off('click')
@@ -124,11 +111,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click')
     $('.8').off('click')
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[3] === gameBoard[4]) && (gameBoard[4] === gameBoard[5]) && (gameBoard[5] === player)) {
-    console.log('player ', player, ' won') // 2nd row win
+    // 2nd row win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -142,11 +128,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[6] === gameBoard[7]) && (gameBoard[7] === gameBoard[8]) && (gameBoard[8] === player)) {
-    console.log('player ', player, ' won') // 3rd row win
+    // 3rd row win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -160,11 +145,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[0] === gameBoard[3]) && (gameBoard[3] === gameBoard[6]) && (gameBoard[6] === player)) {
-    console.log('player ', player, ' won') // 1st column win
+    // 1st column win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -178,11 +162,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[1] === gameBoard[4]) && (gameBoard[4] === gameBoard[7]) && (gameBoard[7] === player)) {
-    console.log('player ', player, ' won') // 2nd column win
+    // 2nd column win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -196,11 +179,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[2] === gameBoard[5]) && (gameBoard[5] === gameBoard[8]) && (gameBoard[8] === player)) {
-    console.log('player ', player, ' won') // 3rd column win
+    // 3rd column win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -214,11 +196,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[0] === gameBoard[4]) && (gameBoard[4] === gameBoard[8]) && (gameBoard[8] === player)) {
-    console.log('player ', player, ' won') // L to R diagonal win
+    // L to R diagonal win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -232,11 +213,10 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((gameBoard[2] === gameBoard[4]) && (gameBoard[4] === gameBoard[6]) && (gameBoard[6] === player)) {
-    console.log('player ', player, ' won') // R to L diagonal win
+    // R to L diagonal win
     $('h1').html('<p>Game over.  Player ' + player + ' won.  Clear Board then Choose Create Game to Play Again</p>')
     over = true
     // onClearGame()
@@ -250,14 +230,9 @@ const isOver = function (board, currentPlayer) {
     $('.7').off('click', onClickBoard)
     $('.8').off('click', onClickBoard)
     gameWinner = true
-    console.log(gameWinner)
     // onClearGame()
     return over
   } else if ((numberMoves === 8) && (over === false)) {
-    console.log('player ', player, ' won')
-    console.log('numberMoves: ', numberMoves)
-    console.log(gameWinner)
-    console.log('Nobody won! Ending is a cat like Meow!')
     $('h1').html('<p>Game over.  Nobody won.  End is a CAT (like meow).  Clear Board then Choose Create Game to Play Again</p>')
     gameWinner = true
     over = true
@@ -268,8 +243,7 @@ const isOver = function (board, currentPlayer) {
 }
 
 const onClearGame = function (event) {
-//  event.preventDefault()
-  console.log('clearBoard started')
+  //  event.preventDefault()
   currentPlayer = 'x'
   gameWinner = false
   numberMoves = 0
