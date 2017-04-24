@@ -5,6 +5,7 @@ const gameEvents = require('./events')
 
 const signUpSuccess = (data) => {
   console.log(data)
+  store.user = data.user
   console.log('sign up success ran.  data is : ', data)
   $('#sign-up-modal').modal('toggle')
   $('#sign-in-modal').modal('toggle')
@@ -13,7 +14,6 @@ const signUpSuccess = (data) => {
   $('.navbar-brand').html('<p>You have successfully signed up! To play, sign in.</p>')
   $('#sign-up-modal').find('input:text, input:password, select, textarea').val('')
   // $('.change-password-button').hide()
-  store.user = data.user
 }
 
 const signUpFailure = (error) => {
@@ -22,7 +22,11 @@ const signUpFailure = (error) => {
   $('.change-password-button').hide()
   // $('#change-password-button-modal').hide()
   $('.navbar-brand').html('<p>Your signup was not successful! If email already used, try a new one.</p>')
+<<<<<<< HEAD
   $('#sign-up-modal').find('input:text, input:password, select, textarea').val('')
+=======
+  $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
+>>>>>>> resub2
 }
 
 const signInSuccess = (data) => {
@@ -50,7 +54,7 @@ const signOutSuccess = () => {
   console.log('store is: ', store)
   store.user = null
   console.log('store is: ', store)
-  $('#sign-out-modal').modal('hide')
+  $('#sign-out-modal').modal('toggle')
   $('.first-buttons').removeClass('hiding')
   $('.logged-in-buttons').addClass('hiding')
   $('.navbar-brand').html('<p>Your signout was successful!</p>')
@@ -64,21 +68,23 @@ const signOutFailure = (error) => {
   //  $('#sign-out-modal').modal('hide')
 }
 
-const changePasswordSuccess = () => {
+const changePasswordSuccess = (data) => {
+  // store.user = data.user
   console.log('change-password success ran.  and nothing was returned')
   console.log('store is: ', store)
-  // data.user = null
-  console.log('store is: ', store)
-  $('.navbar-brand').html('<p>Password change was successful!</p>')
-  $('#change-password').toggle()
-  // $('#change-password-modal').find('input:password[old], input:password[new], select, textarea').val('')
   store.user = data.user
+  console.log('store is: ', store)
+  $('.navbar-brand').html('You changed your password.  To play, please sign in with your new password.')
+  // $('#change-password').toggle()
+  // $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
+  // store.user = data.user
+>>>>>>> resub2
 }
 
 const changePasswordFailure = (error) => {
   console.error('change-password failure ran.  error is: ', error)
+    // store.user = data.user
   $('.navbar-brand').html('<p>Password change was not successful.  Try again.</p>')
-  $('#change-password-modal').find('input:password[old], input:password[new], select, textarea').val('')
   // $('#sign-in-modal').find('input:text, input:password, select, textarea').val('')
 }
 
